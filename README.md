@@ -10,9 +10,15 @@
     - **kuaishou-ads-tester**: **(New)** 快手磁力引擎 API 专属测试专家，覆盖 Unit 层级、魔力建站及 DMP 测试。
     - **ocean-engine-tester**: **(New)** 巨量引擎（Ocean Engine）Marketing API 专属测试专家，覆盖 Project/Promotion 新版架构及巨量千川。
     - **security-tester**: **(New)** 安全测试专家技能，覆盖 OWASP Top 10 及 API 安全扫描。
+    - **performance-tester**: **(New)** 性能测试专家，支持 Locust/JMeter 脚本生成。
+    - **mobile-tester**: **(New)** 移动端测试专家，支持 Appium 自动化脚本。
+    - **mock-server-expert**: **(New)** Mock 服务专家，支持生成 FastAPI 模拟服务。
 - `templates/`: 标准化测试文档模板。
-  - `security_test_checklist.md`: **(New)** 安全测试通用检查单。
-  - `security_scan_example.py`: **(New)** Python 安全基线扫描脚本模板。
+  - `performance_test_locust.py`: **(New)** Locust 性能测试脚本模板。
+  - `mock_server_fastapi.py`: **(New)** FastAPI Mock 服务模板。
+  - `mobile_test_appium.py`: **(New)** Appium 移动端自动化模板。
+  - `security_test_checklist.md`: 安全测试通用检查单。
+  - `security_scan_example.py`: Python 安全基线扫描脚本模板。
   - `ui_test_playwright_guide.md`: Playwright CLI 交互式调试指南与最佳实践。
   - `ui_test_playwright_pytest.py`: Playwright + Pytest UI 自动化测试脚本模板。
   - `api_test_pytest.py`: 通用 Python Pytest 接口自动化测试模板。
@@ -69,12 +75,35 @@
     - **自动化扫描**: 生成 Python 脚本进行安全基线检查（Headers, Cookies, 敏感文件）。
 - **调用示例**: "帮我写一个 Python 脚本，扫描网站的敏感文件泄露和安全响应头。"
 
+### 6. 性能测试专家 (Performance Tester)
+专注于系统高并发稳定性。
+- **能力**:
+    - **压测脚本**: 生成 **Locust** (Python) 和 **JMeter** (XML) 脚本。
+    - **场景模拟**: 模拟广告曝光洪峰、秒杀、抢红包等高负载场景。
+- **调用示例**: "写一个 Locust 脚本，模拟 1000 人并发浏览广告。"
+
+### 7. 移动端测试专家 (Mobile Tester)
+专注于 App 质量与广告展示。
+- **能力**:
+    - **Appium**: 生成 Python 自动化脚本，测试 Android/iOS App。
+    - **广告验证**: 测试开屏广告跳过、DeepLink 唤起、SDK 埋点。
+- **调用示例**: "帮我写一个 Appium 脚本，测试点击广告后是否唤起 App。"
+
+### 8. Mock 服务专家 (Mock Server Expert)
+专注于服务虚拟化与解耦。
+- **能力**:
+    - **Mock Server**: 生成 **FastAPI** 代码，模拟第三方回调接口。
+    - **故障注入**: 模拟网络延迟、随机 500 错误，测试系统的容错性。
+- **调用示例**: "帮我写一个 Mock 服务，模拟媒体侧的归因回调，要支持随机延迟。"
+
 ## 核心功能 (Core Capabilities)
 
 1.  **自动化测试 (Python Pytest)**:
     *   **接口测试**: 自动生成标准的 Python `pytest` + `requests` 测试脚本。
     *   **UI 测试**: 基于 **Playwright** + **Pytest**，支持 Page Object 模式和自动等待。
+    *   **移动端测试**: 基于 **Appium**，支持 DeepLink 和广告展示验证。
     *   **安全扫描**: 生成 `requests` 脚本进行轻量级安全巡检。
+    *   **性能压测**: 生成 **Locust** 协程脚本。
 2.  **多格式支持**:
     *   **接口测试**: 支持生成 **JSON** (Postman Collection v2.1, Apifox 兼容) 格式。
     *   **功能测试**: 支持生成 **CSV** (可直接用 Excel 打开) 和 **Markdown** 表格。
@@ -95,20 +124,11 @@
     > "帮我写一个订单创建接口的自动化测试用例，使用 Python Pytest，覆盖库存不足的场景。"
 *   **UI 自动化**:
     > "帮我写一个 Playwright 脚本，测试用户登录流程，要使用 Page Object 模式。"
-*   **安全测试 (New)**:
+*   **安全测试**:
     > "帮我生成一个 API 安全测试检查单，重点关注越权和数据泄露。"
+*   **性能测试**:
+    > "写一个 Locust 脚本，模拟双11期间的广告高并发曝光。"
 *   **广告平台场景**:
     > "我是腾讯广告开发者..." / "写一个快手广告组创建..." / "测试巨量广告 v3.0..."
 *   **生成 Excel/CSV 用例**:
     > "帮我生成一个购物车功能的测试用例，输出为 CSV 格式，方便我导入 Excel。"
-
-## 优化建议 (Optimization Suggestions)
-
-当前工程已具备全面的功能、接口及广告业务测试能力，以下是进一步的优化方向：
-
-1.  **性能测试集成 (Performance)**:
-    *   目前缺乏性能测试模板。建议增加 **JMeter (.jmx)** 或 **k6 (JavaScript)** 的脚本生成能力，以覆盖高并发场景。
-2.  **CI/CD 流水线 (Pipeline)**:
-    *   建议添加 **GitHub Actions** 或 **GitLab CI** 的配置文件模板，实现测试脚本的自动触发与运行。
-3.  **Mock 服务 (Mock Server)**:
-    *   对于广告 API 测试，建议增加一个简单的 **Mock Server** (基于 Flask/FastAPI) 模板，用于模拟广告平台的异步回调（如归因回传），方便本地调试。
