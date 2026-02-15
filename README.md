@@ -13,10 +13,12 @@
     - **performance-tester**: **(New)** 性能测试专家，支持 Locust/JMeter 脚本生成。
     - **mobile-tester**: **(New)** 移动端测试专家，支持 Appium 自动化脚本。
     - **mock-server-expert**: **(New)** Mock 服务专家，支持生成 FastAPI 模拟服务。
+    - **requirement-analyst**: **(New)** 需求分析专家，支持飞书文档/表格解析与技术任务拆解。
 - `templates/`: 标准化测试文档模板。
-  - `performance_test_locust.py`: **(New)** Locust 性能测试脚本模板。
-  - `mock_server_fastapi.py`: **(New)** FastAPI Mock 服务模板。
-  - `mobile_test_appium.py`: **(New)** Appium 移动端自动化模板。
+  - `requirement_analysis_template.md`: **(New)** 需求分析与拆解模板。
+  - `performance_test_locust.py`: Locust 性能测试脚本模板。
+  - `mock_server_fastapi.py`: FastAPI Mock 服务模板。
+  - `mobile_test_appium.py`: Appium 移动端自动化模板。
   - `security_test_checklist.md`: 安全测试通用检查单。
   - `security_scan_example.py`: Python 安全基线扫描脚本模板。
   - `ui_test_playwright_guide.md`: Playwright CLI 交互式调试指南与最佳实践。
@@ -96,6 +98,13 @@
     - **故障注入**: 模拟网络延迟、随机 500 错误，测试系统的容错性。
 - **调用示例**: "帮我写一个 Mock 服务，模拟媒体侧的归因回调，要支持随机延迟。"
 
+### 9. 需求分析专家 (Requirement Analyst)
+专注于需求澄清与任务拆解。
+- **能力**:
+    - **飞书/文档解析**: 将飞书文档、表格、图片逻辑转化为结构化需求。
+    - **任务拆解**: 生成验收标准 (AC)、技术任务列表、测试策略。
+- **调用示例**: "帮我分析这个飞书文档，拆解出所有的功能点和测试用例。"
+
 ## 核心功能 (Core Capabilities)
 
 1.  **自动化测试 (Python Pytest)**:
@@ -122,6 +131,8 @@
 
 *   **通用场景**:
     > "帮我写一个订单创建接口的自动化测试用例，使用 Python Pytest，覆盖库存不足的场景。"
+*   **需求分析 (New)**:
+    > "把这个飞书需求文档拆解一下，生成验收标准和测试策略。"
 *   **UI 自动化**:
     > "帮我写一个 Playwright 脚本，测试用户登录流程，要使用 Page Object 模式。"
 *   **安全测试**:
